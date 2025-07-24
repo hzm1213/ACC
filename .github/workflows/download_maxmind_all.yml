@@ -2,7 +2,7 @@ name: Download MaxMind GeoLite2 Databases
 
 on:
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
