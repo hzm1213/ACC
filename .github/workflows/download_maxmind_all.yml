@@ -50,3 +50,27 @@ jobs:
           git add *.mmdb
           git commit -m "Update GeoLite2 databases [Auto]" || echo "No changes to commit"
           git push
+
+      - name: Upload GeoLite2-Country.mmdb to Gist
+        uses: exuanbo/actions-create-or-update-gist@v1
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: ${{ secrets.GIST_ID }}
+          file_path: GeoLite2-Country.mmdb
+          file_name: GeoLite2-Country.mmdb
+
+      - name: Upload GeoLite2-City.mmdb to Gist
+        uses: exuanbo/actions-create-or-update-gist@v1
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: ${{ secrets.GIST_ID }}
+          file_path: GeoLite2-City.mmdb
+          file_name: GeoLite2-City.mmdb
+
+      - name: Upload GeoLite2-ASN.mmdb to Gist
+        uses: exuanbo/actions-create-or-update-gist@v1
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: ${{ secrets.GIST_ID }}
+          file_path: GeoLite2-ASN.mmdb
+          file_name: GeoLite2-ASN.mmdb
