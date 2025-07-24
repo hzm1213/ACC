@@ -2,11 +2,11 @@ name: Download MaxMind GeoLite2 Databases
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每日 00:00 UTC 运行
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
 
 permissions:
-  contents: write   # ⚠️ 关键：赋予 push 权限
+  contents: write
 
 jobs:
   download-and-upload:
@@ -23,7 +23,7 @@ jobs:
         run: |
           wget -O GeoLite2-Country.tar.gz "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}&suffix=tar.gz"
           tar -xzf GeoLite2-Country.tar.gz
-          find . -name "*.mmdb" -exec mv {} ./GeoLite2-Country.mmdb \;
+          find . -type f -name "GeoLite2-Country.mmdb" -exec mv {} ./GeoLite2-Country.mmdb \;
           rm -rf GeoLite2-Country.tar.gz
           find . -type d -name "GeoLite2-Country_*" -exec rm -rf {} +
 
@@ -31,7 +31,7 @@ jobs:
         run: |
           wget -O GeoLite2-City.tar.gz "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}&suffix=tar.gz"
           tar -xzf GeoLite2-City.tar.gz
-          find . -name "*.mmdb" -exec mv {} ./GeoLite2-City.mmdb \;
+          find . -type f -name "GeoLite2-City.mmdb" -exec mv {} ./GeoLite2-City.mmdb \;
           rm -rf GeoLite2-City.tar.gz
           find . -type d -name "GeoLite2-City_*" -exec rm -rf {} +
 
@@ -39,7 +39,7 @@ jobs:
         run: |
           wget -O GeoLite2-ASN.tar.gz "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}&suffix=tar.gz"
           tar -xzf GeoLite2-ASN.tar.gz
-          find . -name "*.mmdb" -exec mv {} ./GeoLite2-ASN.mmdb \;
+          find . -type f -name "GeoLite2-ASN.mmdb" -exec mv {} ./GeoLite2-ASN.mmdb \;
           rm -rf GeoLite2-ASN.tar.gz
           find . -type d -name "GeoLite2-ASN_*" -exec rm -rf {} +
 
